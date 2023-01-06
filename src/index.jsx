@@ -18,7 +18,6 @@ root.render(
             {/* <Route path="/user/:id" element={<Stats />} /> */}
             <Route path="*" element={<Error />} />
         </Routes>
-        
     </BrowserRouter>
 </React.StrictMode>
 );
