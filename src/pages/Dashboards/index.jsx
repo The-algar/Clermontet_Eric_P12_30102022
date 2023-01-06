@@ -201,9 +201,11 @@ function Dashboards() {
   useEffect(() => {
     async function getMockedData() {
       try {
-        console.log('Api data loaded = ', userId, api)
+        // console.log('Api data loaded = ', userId, api)
+
         const data = await getData(+userId, api)
-        console.log('get data', data)
+
+        // console.log('get data', data)
 
         setState({
           ...state,
@@ -222,7 +224,9 @@ function Dashboards() {
 
     setState({ ...state, isLoading
 : false })
-    console.log('state: ', state)
+
+    // console.log('state: ', state)
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -260,7 +264,9 @@ function Dashboards() {
     )
   }
   if (isMockDataLoaded) {
-    console.log('not err', data)
+
+    console.log('not err', data) 
+
     return (
       <>
         <DashboardWrapper>

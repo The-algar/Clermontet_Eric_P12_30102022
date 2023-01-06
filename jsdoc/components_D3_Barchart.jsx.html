@@ -1,4 +1,32 @@
-// //@ts-check
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/D3/Barchart.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/D3/Barchart.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>// //@ts-check
 
 import * as d3 from 'd3'
 import { select } from 'd3'
@@ -12,7 +40,7 @@ import PropTypes from 'prop-types'
  * Filled by D3.js.
  * @name BarChart
  * @param {Object} props - props component
- * @param {Array<Object>} props.data - user data
+ * @param {Array&lt;Object>} props.data - user data
  * @hook useD3 : hook filtering data, Id and renderChartFn draw the svg of the chart while including responsive dimensions with resize observer
  * @function Barchart Draw the Barchart svg with D3.js
  * @returns {JSX} a Bar Chart
@@ -169,14 +197,14 @@ export default function Barchart({ data }) {
 					})
           // infos bubble 
         toolTip.append("rect")
-          .attr("x", displayTooltip(index+1)) // xAxis(index+1)
+          .attr("x", xAxis(index+1)) // xAxis(index+1)
           .attr("y", 20)
           .attr("width", 39)
           .attr("height", 70)
           .attr("opacity", "0")
           .attr('fill', 'red')
         toolTip.append("text")
-          .attr("x", displayTooltip(index+1))
+          .attr("x", xAxis(index+1))
           .attr("y", 45)
           .attr("dx", 7.5)
           .text(d.kilogram + "Kg")  
@@ -185,7 +213,7 @@ export default function Barchart({ data }) {
           .style('fill', '#fff')
           .attr("opacity", "0")
         toolTip.append("text")
-          .attr("x", displayTooltip(index+1))
+          .attr("x", xAxis(index+1))
           .attr("y", 75)
           .attr("dx", 2.5)
           .text(d.calories + "Kcal")   
@@ -195,13 +223,13 @@ export default function Barchart({ data }) {
           .attr("opacity", "0")
         })
 
-    // Just to be sure a tooltip don't go outside the chart
-		function displayTooltip(index) {
-			if(xAxis(index) <= width -margin.left -margin.right) 
-				return xAxis(index) 
-			else 
-				return xAxis(index) -100
-		}
+    // // Just to be sure a tooltip don't go outside the chart
+		// function displayTooltip(index) {
+		// 	if(xAxis(index) &lt;= width -margin.left -margin.right) 
+		// 		return xAxis(index)
+		// 	else 
+		// 		return xAxis(index) -100
+		// }
 
      // Adding rounded tips of bars
     data?.activity?.sessions.forEach((d, index) => { 
@@ -240,27 +268,41 @@ export default function Barchart({ data }) {
     .attr('width', '8' ) //xSubgroup.bandwidth()
     .attr('height', d => ySubgroup(d.value))
     .attr('fill', d => color(d.key))
+
+    // // add bar rounded tip
+    // // eslint-disable-next-line
+    // const circle = svg.append('g')
+    // .data(data?.activity?.sessions)
+    // .join('circle')
+    // .attr("transform", d => `translate(${xAxis(d.day)}, ${-margin.top -margin.bottom})`)
+    // .selectAll('g')
+    // .data(function(d) { return subgroups.map(function(key) { return {key: key, value: d[key]}; }); })
+    .join('circle')
+    .attr('cx', d => xSubgroup(d.key))
+    .attr('cy', d => height-ySubgroup(d.value)-4)
+    .attr('r', 8)
+    .attr('fill', d => color(d.key))
 })
 
   return (
-    // <div ref={wrapperRef.current ? d3.select('.barChart-svg').remove() : wrapperRef.current = true}>
-    <Wrapper ref={wrapperRef}>
-      <Head>
-        <Title>Activité quotidienne</Title>
-        <Legend>
-          <Info>
-            <Icon color='#282D30' />
-            <Text>Poids (kg)</Text>
-          </Info>
-          <Info>
-            <Icon color='#E60000' />
-            <Text>Calories brûlées (kCal)</Text>
-          </Info>
-          </Legend>
-      </Head>
-      <svg ref={svgRef} style={{ height: '100%', width: '100%' }}> 
-      </svg>
-    </Wrapper>
+    // &lt;div ref={wrapperRef.current ? d3.select('.barChart-svg').remove() : wrapperRef.current = true}>
+    &lt;Wrapper ref={wrapperRef}>
+      &lt;Head>
+        &lt;Title>Activité quotidienne&lt;/Title>
+        &lt;Legend>
+          &lt;Info>
+            &lt;Icon color='#282D30' />
+            &lt;Text>Poids (kg)&lt;/Text>
+          &lt;/Info>
+          &lt;Info>
+            &lt;Icon color='#E60000' />
+            &lt;Text>Calories brûlées (kCal)&lt;/Text>
+          &lt;/Info>
+          &lt;/Legend>
+      &lt;/Head>
+      &lt;svg ref={svgRef} style={{ height: '100%', width: '100%' }}> 
+      &lt;/svg>
+    &lt;/Wrapper>
   )}
 
 Barchart.propTypes={
@@ -323,4 +365,26 @@ const Legend = styled.div`
 const Info = styled.div`
     display: flex;
     align-items:center;
-`
+`</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="User.html">User</a></li></ul><h3>Global</h3><ul><li><a href="global.html#Api">Api</a></li><li><a href="global.html#LoaderWrapper">LoaderWrapper</a></li><li><a href="global.html#PieChartDrawthesvgpiechartwithPieChart">PieChart Draw the svg pie chart with PieChart</a></li><li><a href="global.html#RadarChart">RadarChart</a></li><li><a href="global.html#UserCard">UserCard</a></li><li><a href="global.html#UserHeader">UserHeader</a></li><li><a href="global.html#getAllDataMocked">getAllDataMocked</a></li><li><a href="global.html#useSportSeeApi">useSportSeeApi</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.0</a> on Thu Dec 29 2022 18:07:52 GMT+0100 (heure normale d’Europe centrale)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

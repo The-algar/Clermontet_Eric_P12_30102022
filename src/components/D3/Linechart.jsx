@@ -1,9 +1,21 @@
+//@ts-check
+
 import * as d3 from 'd3'
 import { select } from 'd3'
 import React, { useRef } from 'react'
 import styled from 'styled-components'
 import { useD3 } from '../../utils/hooks/useD3'
-// import colors from '../../utils/style/colors.js'
+import PropTypes from 'prop-types'
+
+/**
+ * @name LineChart A Linear chart showing the user average session length. Filled by D3.js.
+ * @param {Object} props - props component
+ * @param {Array<Object>} props.data - user data
+ * @hook useD3 : hook filtering data, Id and renderChartFn draw the svg of the chart while including responsive dimensions with resize observer
+ * @function LineChart Draw the svg Line chart with D3.js
+ * @returns {JSX} : a Radial Pie Chart
+ * @component
+*/
 
 const Wrapper = styled.div`
     display: inline-block;
@@ -27,8 +39,8 @@ export default function LineChart({ data }) {
   const svgRef = useRef()
   const wrapperRef = useD3(svgRef, data, (dimensions) => {
     
-    console.log('userData', data);
-    console.log('svgDimensions :', dimensions);
+    // console.log('userData', data);
+    // console.log('svgDimensions :', dimensions);
 
     if (!dimensions) return
 
@@ -36,16 +48,12 @@ export default function LineChart({ data }) {
     const width = (dimensions.width -margin.left -margin.right);
     const height = (dimensions.height -margin.top -margin.bottom);
 
-    console.log('width :', dimensions.width);
-    console.log('height :', dimensions.height);
-    // const width = parseInt(d3.select(svgRef.current).style('width')) - margin.left - margin.right
-		// const height = parseInt(d3.select(svgRef.current).style('height')) - margin.top - margin.bottom
-    // const width = parseInt(d3.select(svgRef.current).style('width')) - margin.left - margin.right
-		// const height = parseInt(d3.select(svgRef.current).style('height')) - margin.top - margin.bottom
-		
+    // console.log('width :', dimensions.width);
+    // console.log('height :', dimensions.height);
 	
     const dayInitMaj = ['L', 'M', 'M', 'J', 'V', 'S', 'D'];
-    console.log('dayInitMaj :', dayInitMaj)
+	
+    // console.log('dayInitMaj :', dayInitMaj)
 
 
 	// append the svg object to the body of the page
@@ -93,7 +101,7 @@ export default function LineChart({ data }) {
       .select('.domain')
       .remove()
 
-		//tooltips
+	//tooltips
     // Just to be sure a tooltip don't go outside the chart
       function displayTooltip(index) {
         if (x(index) <= width -margin.left -margin.right)
@@ -175,18 +183,26 @@ export default function LineChart({ data }) {
             .attr("stroke", "#ffffff")
             .attr("stroke-width", 2)
             .attr("d", d3.line()
-              .curve(d3.curveMonotoneX) //curveCatmullRom.alpha(.5)
+              .curve(d3.curveMonotoneX) //curveCatmullRom
               .x(function(d) { return x(d.day)})
               // .x(function(d) { return x(tickLabels.indexOf(d.day))})
               .y(function(d) { return y(d.sessionLength)})
               )
 		})
 	})     
-// height: '16rem', width: '100%', 
   return (
     <Wrapper ref={wrapperRef}>
       <svg ref={svgRef} style={{ height: '100%', width: '100%', backgroundColor: '#FF0000', borderRadius: '5px'}}> 
       </svg>
     </Wrapper>
+  )
+}
+
+LineChart.propTypes={
+  sessions : PropTypes.arrayOf(
+    PropTypes.shape({
+      day: PropTypes.number,
+      sessionLength: PropTypes.number,
+    })
   )
 }
