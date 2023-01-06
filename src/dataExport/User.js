@@ -33,47 +33,47 @@ export class User {
    *
    * @return  {string}  FirstName
    */
-  // get _toDayScore() {
-  //   let score = 0;
-  //   this._data.userMainData.forEach((user) => {
-  //     if (user.userId === parseInt(this._userId)) {
-  //       score = user.todayScore;
-  //     }
-  //   });
+  get _toDayScore() {
+    let score = 0;
+    this._data.userMainData.forEach((user) => {
+      if (user.userId === parseInt(this._userId)) {
+        score = user.todayScore;
+      }
+    });
 
-  //   return score;
-  // }
+    return score;
+  }
 
   /**
    * Formats User keyData from initial data
    *
    * @return  les array de  nutriments et values
    */
-  // get _keyData() {
-  //   const nutriments = ['Calories', 'Protéines', 'Glucides', 'Lipides'];
-  //   let values = new Array(5);
-  //   // eslint-disable-next-line no-unused-vars
-  //   const userData = this._data.forEach((user) => {
-  //     if (user.userId === parseInt(this._userId)) {
-  //       // console.log(user.keyData);
-  //       values = Object.values(user.keyData);
-  //     }
-  //   });
+  get _keyData() {
+    const nutriments = ['Calories', 'Protéines', 'Glucides', 'Lipides'];
+    let values = new Array(5);
+    // eslint-disable-next-line no-unused-vars
+    const userData = this._data.forEach((user) => {
+      if (user.userId === parseInt(this._userId)) {
+        // console.log(user.keyData);
+        values = Object.values(user.keyData);
+      }
+    });
 
-  //   return { nutriments, values };
-  // }
+    return { nutriments, values };
+  }
 
   /**
    * Formats User keyData from Api
    *
    * @return  {{nutriments: Array, values: Array}   { nutriments, values }
    */
-  // get _keyDataApi() {
-  //   const nutrimentsApi = ['Calories', 'Protéines', 'Glucides', 'Lipides'];
-  //   let valuesApi = new Array(5);
+  get _keyDataApi() {
+    const nutrimentsApi = ['Calories', 'Protéines', 'Glucides', 'Lipides'];
+    let valuesApi = new Array(5);
 
-  //   valuesApi = Object.values(this._dataApi);
+    valuesApi = Object.values(this._dataApi);
 
-  //   return { nutrimentsApi, valuesApi };
-  // }
+    return { nutrimentsApi, valuesApi };
+  }
 }
