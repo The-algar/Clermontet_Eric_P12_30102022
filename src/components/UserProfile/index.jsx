@@ -4,11 +4,11 @@ import styled from 'styled-components';
 import colors from '../../utils/style/colors.js';
 
 /**
- * Component for showing  User profile
+ * Component for showing  User welcome introduction
  *
  * @component UserProfile
  * @param   {string}  userId  User Id
- * @param   {string}  cover   UserImage
+ * @param   {string}  cover   User Thumbnail (from P6)
  * @param   {boolean}  api    is Api available?
  * @param   {Object}  data    User data from Api
  * @return {JSX.Element}

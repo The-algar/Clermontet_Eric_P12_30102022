@@ -35,30 +35,27 @@ const Message = styled.p`
  * @param   {string}  userId  User Id
  * @param   {string}  message    message
  * @param   {boolean}  isLoading
+
  * @param   {boolean}  api   is Api available?
- * @param   {Object}  userApi   User data from Api
+*  @param   {boolean}  data   User data from Api and MockedData
  * @return {JSX.Element}
  */
-function UserHeader({
-  userId,
-  message,
-  isLoading,
-  data,
-  api = false,
-  userApi,
-}) {
-  const firstName = new User(userId, data)._firstName || 'Unknown Motherfucking User';
+function UserHeader({userId, message, isLoading
+, data})  { // j'ai oté api = false devenu inutile
+  const firstName = new User(userId, data)._firstName || 'Unknown User';
 
   return (
     <>
       <Title>
         Bonjour{' '}
         <FirstName>
-          {!isLoading && api ? userApi?.userInfos?.firstName : firstName}
+          {/* {!isLoading && api ? userApi?.userInfos?.firstName : firstName} */}
+          {/* {!isLoading && api ? data?.userInfos?.firstName : firstName} */}
+          {!isLoading && firstName}
         </FirstName>
       </Title>
       <Message>
-        <span>{!isLoading || firstName === 'Unknown Motherfucking User' ? message : 'Who the fuck are you?'}</span>
+        <span>{!isLoading || firstName === 'Unknown User' ? message : 'User Unknown, Please register'}</span>
       </Message>
     </>
   );
@@ -67,10 +64,10 @@ function UserHeader({
 UserHeader.propTypes = {
   userId: PropTypes.string.isRequired,
   message: PropTypes.string.isRequired,
-  isLoading: PropTypes.bool.isRequired,
+  isLoading
+: PropTypes.bool.isRequired,
   data: PropTypes.object,
   api: PropTypes.string,
-  userApi: PropTypes.object,
 };
 
 export default UserHeader;
