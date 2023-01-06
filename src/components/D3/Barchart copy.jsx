@@ -3,7 +3,9 @@ import { select } from 'd3'
 import React, { useRef } from 'react'
 import styled from 'styled-components'
 import { useD3 } from '../../utils/hooks/useD3'
-import PropTypes from 'prop-types'
+// import { useSportSeeApi } from '../../utils/hooks/SportSeeApi'
+// import CustomTooltip from '../CustomTooltip/index.js'; // à finir
+// import colors from '../../utils/style/colors.js'
 
 export default function Barchart({ data }) {
   const svgRef = useRef()
@@ -95,118 +97,83 @@ export default function Barchart({ data }) {
       .domain(subgroups)
       .range([0, xAxis.bandwidth()])
       .padding([0.5])
-      
+
     // create a second y scale for the biggest bar (the biggest one) to be the same height as our SVG container
     const ySubgroup = d3.scaleLinear()
             .domain([0, (maxY*1.4)])
             .range([0, height])
+            
 
     // color palette = one color per subgroup
     const color = d3.scaleOrdinal()
       .domain(subgroups)
-      .range(['#020203','#FF0101']);
+      .range(['#020203','#FF0101'])
 
-    // // Bars rounded tops and squared bottoms
-    // //rounded bar line
-		// svg.append('g')
-		// 	.selectAll('line')
-		// 	.data(data?.activity?.sessions)
-		// 	.enter()
-		// 	.append('line')
-		// 	.attr('x1', d => xAxis(d.day))
-		// 	.attr('x2', d => xAxis(d.day))
-		// 	.attr('y1', d => height + margin.bottom)
-		// 	.attr('y2', d => height + margin.bottom)
-		// 	.transition()
-		// 	.duration(700)
-		// 	.attr('y2', d => height - ySubgroup(maxY))
-		// 	.attr( 'stroke', color)
-		// 	.attr('stroke-width', "10")
-		// 	.attr('stroke-linecap',"round")   
-		// //rect bar line
-		// svg.append('g')
-		// 	.selectAll('line')
-		// 	.data(data?.activity?.sessions)
-		// 	.enter()
-		// 	.append('line')
-		// 	.attr('x1', d => xAxis(d.day))
-		// 	.attr('x2', d => xAxis(d.day))
-		// 	.attr('y1', d => height + margin.bottom)
-		// 	.attr('y2', d => height + margin.bottom)
-		// 	.transition()
-		// 	.duration(700)
-		// 	.attr('y2', d => height - ySubgroup(maxY))
-		// 	.attr( 'stroke', color)
-		// 	.attr('stroke-width', "6")
-		// 	.attr('stroke-linecap',"butt")
-
-    // Tooltips and Tooltip Area
-    data?.activity?.sessions.forEach((d, index) => { 
-			let toolTip = svg.append("g")
-				.attr("id", `day${index + 1}`)
+    // Bars rounded tops and squared bottoms
+      // .style("stroke", 'green')          // colour the line - should be d => color(d.key)
+      // .style("stroke-width", '5') // adjust line width
+      // .style("stroke-linecap", "round") // stroke-linecap type
+      // .attr("x1", d => xSubgroup(d.key)) // x position of the first start of the column
+      // .attr("x2", d => xSubgroup(d.key)) // x position of the first end of the column
+      // .attr("y1", d => ySubgroup(d.value)) // y position of the second start of the column
+      // .attr("y2", d => ySubgroup(d.value)) // y position of the second end of the column
+      // .style("stroke-linecap", "square")  // stroke-linecap type
+      // .attr("x1", d => xSubgroup(d.key)) // x position of the first start of the column
+      // .attr("x2", d => xSubgroup(d.key)) // x position of the first end of the column
+      // .attr("y1", d => ySubgroup(d.value)) // y position of the second start of the column
+      // .attr("y2", d => ySubgroup(d.value)) // y position of the second end of the column
     
-    // create gray rectangles for hover
-			toolTip.append("rect")
-				.attr("x", xAxis(d.day))
-				.attr("y", margin.top)
-        .attr("width", xAxis.bandwidth())
-        .attr("height", height -margin.bottom -margin.top)
-				.attr('fill', 'gray')
-				.attr("opacity", "0")
+    data?.activity?.sessions.forEach((d, index) => { 
+			let group = svg.append("g")
+				.attr("id", `day${index+1}`)
 
-      // make it appear on hover + make the infos appears
-				.on("mouseover", function () {
-					d3.select(this).transition()
-						.duration('200')
-						.attr("opacity", ".2")
-					d3.selectAll(`#day${index + 1} > *:not(:first-child)`).transition()
-            .attr('transform', `translate(${xAxis(d.day) +margin.left +10}, 0)`) //+margin.right
-						.duration('200')
-						.attr("opacity", "1")
-					})
-				.on("mouseout", function () {
-					d3.select(this).transition()
-						.duration('200')
-						.attr("opacity", "0")
-					d3.selectAll(`#day${index+1} > *:not(:first-child)`).transition()
-						.attr("opacity", "0")
-					})
-          // infos bubble 
-        toolTip.append("rect")
-          .attr("x", xAxis(index+1)) // xAxis(index+1)
-          .attr("y", 20)
-          .attr("width", 39)
-          .attr("height", 70)
-          .attr("opacity", "0")
-          .attr('fill', 'red')
-        toolTip.append("text")
-          .attr("x", xAxis(index+1))
-          .attr("y", 45)
-          .attr("dx", 7.5)
-          .text(d.kilogram + "Kg")  
-          .style("text-anchor", "start")
-          .style("font-size", "10px")
-          .style('fill', '#fff')
-          .attr("opacity", "0")
-        toolTip.append("text")
-          .attr("x", xAxis(index+1))
-          .attr("y", 75)
-          .attr("dx", 2.5)
-          .text(d.calories + "Kcal")   
-          .style("text-anchor", "start")
-          .style("font-size", "10px")
-          .style('fill', '#fff')   
-          .attr("opacity", "0")
+    // Add Tooltip
+    const divTooltip = d3.select().append("div")
+    .style("display","none")
+    .style("text-align","center")
+    .style("padding-top","21px")
+    .style("position", "absolute")
+    .style("width","39px")
+    .style("height","63px")
+    .style("font-size","7px")
+    .style("color","white")
+    .style("background","#E60000")
+    .style("border","2px")
+    .style("border-radius","2px")
+    .style("pointer-events","none")
+
+    // Add rectangles that appears on mouseover                   
+    const rectangle = svg.selectAll("rect").data(data?.activity?.sessions);
+    rectangle
+      .enter()
+      .append("rect")
+      .attr("width", xAxis.bandwidth())
+      .attr("height", height -margin.bottom -margin.top)
+      // .attr("x",function(d,i){return i*(width/7) +(margin.left/2) +(margin.right/2)})
+      .attr("x",(d)  => xAxis(d.day))
+      .attr("y", 0)
+      .style("opacity", 0)
+      .style("fill","rgba(196, 196, 196, 0.5)")
+      .style("pointer-events","all") 
+      .on("mouseover", function(event,d) {
+        d3.select(this).transition().duration(200).style("opacity", .9)
+        divTooltip.transition()
+        .duration(200)
+        .style("display", "block");
+        divTooltip.html(d.kilogram  +  "kg   "  + d.calories + "Kcal")
+        .style("left",  (event.pageX - 10) + "px")
+        .style("top", ( 400) + "px");
         })
-
-    // // Just to be sure a tooltip don't go outside the chart
-		// function displayTooltip(index) {
-		// 	if(xAxis(index) <= width -margin.left -margin.right) 
-		// 		return xAxis(index)
-		// 	else 
-		// 		return xAxis(index) -200
-		// }
-
+        .on("mouseout", function(d) {
+          d3.select(this).transition()
+            .duration(500)
+            .style("opacity", 0);
+            divTooltip.transition()
+            .duration(500)
+            .style("display", "none");  
+          })
+        })
+    
     // append the svg object to the body of the page
     svg.append('g')
     // Show the bars
@@ -215,7 +182,6 @@ export default function Barchart({ data }) {
     .data(data?.activity?.sessions)
     .join('g')
     .attr("transform", d => `translate(${xAxis(d.day)}, ${-margin.top -margin.bottom})`)
-    
     .selectAll('rect')
     .data(function(d) { return subgroups.map(function(key) { return {key: key, value: d[key]}; }); })
     .join('rect')
@@ -224,6 +190,7 @@ export default function Barchart({ data }) {
     .attr('width', xSubgroup.bandwidth())
     .attr('height', d => ySubgroup(d.value))
     .attr('fill', d => color(d.key))
+       
 })
 
   return (
@@ -242,38 +209,24 @@ export default function Barchart({ data }) {
           </Info>
           </Legend>
       </Head>
-      <svg ref={svgRef} style={{ height: '100%', width: '100%' }}> 
+      <svg ref={svgRef} style={{ height: '15rem', width: '100%' }}> 
       </svg>
     </Wrapper>
   )}
 
-const data_shape_prop = {
-	day: PropTypes.string.isRequired, 
-	kilogram: PropTypes.number.isRequired,
-	calories: PropTypes.number.isRequired
-}
-
-Barchart.propTypes = {
-	data: PropTypes.arrayOf(PropTypes.shape(data_shape_prop)).isRequired,
-	dimensions: PropTypes.number
-}
 
 const Wrapper = styled.div`
+    // position: relative;
     background: #FBFBFB;
-    height: 20rem;
     border-radius: 5px;
-    @media (max-width: 968px) {
-      height: 15rem;
-    }
 `
 const Head = styled.div`
     display: flex;
     justify-content: space-around;
-    margin: 1rem 1.5rem 1rem 1.5rem;
+    // margin-bottom: 0; // 2.5rem;
+    // margin-right: 1.5rem;
+    margin: 2.5rem 1.5rem 1rem 1.5rem;
     padding-top: 0; 1.5rem;
-    @media (max-width: 968px) {
-      margin: 1rem 1.5rem 1rem 1.5rem;
-    }
 	`
 
 const Title= styled.h2`

@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { getAllDataMocked } from './mockedAPI'
+import { getAllDataMocked } from './mockedAPI/index'
 
 const BASE_URL = 'http://localhost:3000/user/'
 
