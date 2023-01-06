@@ -3,6 +3,17 @@ import { PropTypes } from 'prop-types';
 import styled from 'styled-components';
 import colors from '../../utils/style/colors.js';
 
+/**
+ * Component for showing  User profile
+ *
+ * @component UserProfile
+ * @param   {string}  userId  User Id
+ * @param   {string}  cover   UserImage
+ * @param   {boolean}  api    is Api available?
+ * @param   {Object}  data    User data from Api
+ * @return {JSX.Element}
+ */
+
 const UserCard = styled.div`
   justify-self: center;
   display: flex;
@@ -20,10 +31,6 @@ const UserName = styled.h2`
   letter-spacing: -1px;
   font-weight: normal;
 `
-// const UserDescription = styled.p`
-//   font-size: 18px;
-//   // color: ${colors.primary};
-// `
 const UserLink = styled.a`
   display: flex;
   flex-direction: column;
@@ -43,20 +50,10 @@ const UserImage = styled.img`
   }
 `
 
-/**
- * Component for showing  User profile
- *
- * @component UserProfile
- * @param   {string}  userId  User Id
- * @param   {string}  cover   UserImage
- * @param   {boolean}  api    is Api available?
- * @param   {Object}  data    User data from Api
- * @return {JSX.Element}
- */
 function UserProfile({ userId, cover, data, api }) {
   return (
       <UserCard>
-        <UserLink
+        <UserLink 
           href={api ? `/user/${userId}/${api}` : `/user/${userId}`}
         >
           <UserImage src={cover} />
@@ -66,8 +63,7 @@ function UserProfile({ userId, cover, data, api }) {
               : data?.userInfos?.firstName}
           </UserName>
         </UserLink>
-        {/* <UserDescription>{data?.userInfos?.age} ans</UserDescription> */}
-      </UserCard>
+       </UserCard>
   );
 }
 

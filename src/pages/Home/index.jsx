@@ -7,7 +7,7 @@ import SideMenu from '../../components/SideMenu'
 import { getAllDataMocked } from '../../service/mockedAPI/index.js'
 import UserProfile from '../../components/UserProfile'
 import ToggleSwitch from '../../components/ToggleSwitch'
-// import colors from '../../utils/style/colors.js'
+import colors from '../../utils/style/colors.js'
 
 
 const HomeWrapper = styled.section`
@@ -62,12 +62,8 @@ function Home () {
   const { isLoading, data } = state;
   const [checked, setChecked] = useState(false);
 
-  // const handleChange = (prev) => {
-  //   setChecked(prev, !prev);
-  // };
-
   const handleChange = (checked) => {
-    setChecked(checked);
+    setChecked(checked, !checked);
   }
 
   useEffect(() => {
@@ -94,7 +90,7 @@ function Home () {
       <>
         <Loader
           type={'spinningBubbles'}
-          color={'#ff6060'}
+          color={colors.secondary}
           width={200}
           height={200}
         />
