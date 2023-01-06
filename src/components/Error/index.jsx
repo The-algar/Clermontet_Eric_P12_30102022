@@ -5,7 +5,7 @@ import colors from '../../utils/style/colors'
 const ErrorWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: ${colors.backgroundLight};
+  background-color: ${colors.nobg};
   min-width: 395px;
   align-items: center;
   padding: 0!important;

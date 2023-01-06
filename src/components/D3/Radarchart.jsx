@@ -16,7 +16,6 @@ import PropTypes from 'prop-types'
  * @returns {JSX} : a Radial Pie Chart
  * @component
 */
-
 const Wrapper = styled.div`
     display: inline-block;
     position: relative;
@@ -48,8 +47,8 @@ export default function RadarChart({ data }) {
     const margin = { top: 20, left: 0, bottom: 20, right: 0 };
     const width = (dimensions.width -margin.left -margin.right); //Width of the radar chart
     const height = (dimensions.height -margin.top -margin.bottom); //height of the radar chart
-    const buffer = 30
-    const radius = dimensions.height /2 - buffer
+    // const buffer = 30
+    const radius = (dimensions.height /2 -margin.top -margin.bottom)
     // const maxValue = d3.max(data?.perf?.data, function(d){return d.value})
     const maxValue = d3.max(data?.perf?.data, d => d.value)    
     
@@ -79,17 +78,17 @@ export default function RadarChart({ data }) {
     const perfData = data?.perf?.data.map((elt)=>{
     switch (elt.kind){
       case 1 :
-      return {...data, kind: "Intensité"};
+      return {...data, kind: "Cardio"};
       case 2 :  
-      return {...data, kind: "Vitesse"};
+      return {...data, kind: "Energie"};
       case 3 :  
-      return {...data, kind: "Force"};
+      return {...data, kind: "Endurance"};
       case 4 :  
       return {...data, kind: "Force"};
       case 5 :  
-      return {...data, kind: "Energie"};
+      return {...data, kind: "Vitesse"};
       case 6 :  
-      return {...data, kind: "Cardio"};
+      return {...data, kind: "Intensité"};
       default :
       return {...perfData};
       }
@@ -128,18 +127,6 @@ export default function RadarChart({ data }) {
       .transition()
       .duration(2000)
       .style('fill', 'white')
-
-        // Add RadialLine label's values. 
-        svg.select('#radialChart')
-        .append('path')
-        .attr('id', `axisPerformValue${index}`)
-        .attr('d', radialLine([
-          [index * Angle, 0], [index * Angle, labels.value ]
-        ]))
-        .style('fill', "none")
-        .style("stroke-width", '0')
-        .style('stroke', "white")
-        
     }) 
   
     // create Polygone

@@ -8,7 +8,6 @@
 <img src="https://img.shields.io/badge/React-18.2.0-blue"/>&nbsp;&nbsp;
 <img src="https://img.shields.io/badge/React--dom-18.2.0-blue"/>&nbsp;&nbsp;
 <img src="https://img.shields.io/badge/React--Router--dom-6.4.2-blue"/>&nbsp;&nbsp;
-<img src="https://img.shields.io/badge/Node--Js-12.18.0-green"/>&nbsp;&nbsp;
 <img src="https://img.shields.io/badge/Node--Sass-7.0.3-green"/>&nbsp;&nbsp;
 <img src="https://img.shields.io/badge/Axios-1.1.3-yellow"/>&nbsp;&nbsp;
 <img src="https://img.shields.io/badge/Eslint-8.26.0-yellow"/>
@@ -50,7 +49,7 @@ to run the backend. Message 'magic happens on port 3000' indicates the backend h
 
 ## Frontend
 
-clone this repo https://github.com/MenAllen/PhilippeJoubard_P12_032022.git
+clone this repo https://github.com/The-algar/Clermontet_Eric_P12_30102022
 
 ### `npm install`
 

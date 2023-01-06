@@ -1,4 +1,4 @@
-//@ts-check
+// //@ts-check
 
 import * as d3 from 'd3'
 import { select } from 'd3'
@@ -8,14 +8,15 @@ import { useD3 } from '../../utils/hooks/useD3'
 import PropTypes from 'prop-types'
 
 /**
- * @name LineChart A Linear chart showing the user average session length. Filled by D3.js.
+ * A Linear chart showing the user average sessions. Filled by D3.js.
+ * 
+ * @name LineChart
  * @param {Object} props - props component
  * @param {Array<Object>} props.data - user data
- * @hook useD3 : hook filtering data, Id and renderChartFn draw the svg of the chart while including responsive dimensions with resize observer
- * @function LineChart Draw the svg Line chart with D3.js
- * @returns {JSX} : a Radial Pie Chart
+ * @param {number} props.dimensions - height and width of svg container relative to the viewport
+ * @returns {JSX} a Linear Chart
  * @component
-*/
+ */
 
 const Wrapper = styled.div`
     display: inline-block;
@@ -198,11 +199,11 @@ export default function LineChart({ data }) {
   )
 }
 
-LineChart.propTypes={
+LineChart.proTypes={
   sessions : PropTypes.arrayOf(
     PropTypes.shape({
-      day: PropTypes.number,
-      sessionLength: PropTypes.number,
+      day: PropTypes.number.isRequired,
+      sessionLength: PropTypes.number.isRequired
     })
   )
 }

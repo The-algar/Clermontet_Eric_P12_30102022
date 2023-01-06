@@ -1,13 +1,19 @@
-import axios from 'axios';
-import { useState, useEffect } from 'react';
-import { END_POINTS } from '../../service/API/_index';
+// //@ts-check
+
+import axios from 'axios'
+import { useState, useEffect } from 'react'
+import { END_POINTS } from '../../service/API/_index'
 
 /**
- * Hook used to extract data from SportSeeAPI to feed the dashboard.
- * @param {string} service
+ * Hook to fetch data from enpoint(s), using axios. 
+ * 
+ * @name SportSeeApi
+ * @param {Array<string>} service - api 's enpoint(s)
  * @param {string} userId
- * @returns {userId|Object}
+ * @returns {userId|Object} the data, error and loading state in an object 
+ * @function
  */
+
 export function useSportSeeApi(userId) {
   const [apiData, setData] = useState({});
   const [isApiLoading, setIsLoading] = useState(true);
