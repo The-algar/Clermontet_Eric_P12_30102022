@@ -32,6 +32,7 @@ const InfosText = styled.p`
 export {Wrapper, Infos, InfosData, InfosText}
 
 /** display icon with user infos 
+ *  @description Component shows user's keyData Card composed by icon, info, text
  * @param  {string} icon
  * @param  {string} info
  * @param  {string} text
