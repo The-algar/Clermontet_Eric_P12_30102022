@@ -1,0 +1,17 @@
+{
+    "plugins": ["plugins/markdown"],
+    "source": {
+        "include": ["src"],
+        "includePattern": ".+\\.js(doc|x)?$",
+        "excludePattern": "(node_modules/|docs)" 
+    },
+    "templates": {
+        "cleverLinks": true,
+        "monospaceLinks": true
+    },
+    "opts": {
+        "encoding": "utf8",               
+        "destination": "./jsdoc",          
+        "recurse": true                  
+    }
+}

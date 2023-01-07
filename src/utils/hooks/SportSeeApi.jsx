@@ -1,13 +1,12 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-import { END_POINTS } from '../../service/API';
-// import { User } from '../../dataExport/User'
+import { END_POINTS } from '../../service/API/_index';
 
 /**
  * Hook used to extract data from SportSeeAPI to feed the dashboard.
  * @param {string} service
  * @param {string} userId
- * @returns {undefined|Object}
+ * @returns {userId|Object}
  */
 export function useSportSeeApi(userId) {
   const [apiData, setData] = useState({});

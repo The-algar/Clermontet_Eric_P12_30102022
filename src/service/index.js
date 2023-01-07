@@ -15,7 +15,8 @@ export const END_POINTS = (id) => {
 export async function getData(userId, useApi) {
   if (!useApi) {
     const data = await getAllDataMocked()
-    const user = data.userMainData.find((d) => d.userId === userId)
+    const mockUser = data.userMainData.find((d) => d.userId === userId)
+    const user = { ...mockUser, score: mockUser.todayScore }
     const activity = data.userActivities.find((d) => d.userId === userId)
     const average = data.userAverageSession.find((d) => d.userId === userId)
     const perf = data.userPerformances.find((d) => d.userId === userId)
@@ -28,7 +29,10 @@ export async function getData(userId, useApi) {
     .then(
       axios.spread((user, activity, average, perf) => {
         return { 
-          user: user.data.data, 
+          user: {
+            ...user.data.data,
+            score: user.data.data.score || user.data.data.todayScore
+          },
           activity: activity.data.data, 
           average: average.data.data,
           perf: perf.data.data, }

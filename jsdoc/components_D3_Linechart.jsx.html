@@ -1,16 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/D3/Linechart.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/D3/Linechart.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>//@ts-check
+
 import * as d3 from 'd3'
 import { select } from 'd3'
 import React, { useRef } from 'react'
 import styled from 'styled-components'
 import { useD3 } from '../../utils/hooks/useD3'
-// import colors from '../../utils/style/colors.js'
+import PropTypes from 'prop-types'
+
+/**
+ * @name LineChart A Linear chart showing the user average session length. Filled by D3.js.
+ * @param {Object} props - props component
+ * @param {Array&lt;Object>} props.data - user data
+ * @hook useD3 : hook filtering data, Id and renderChartFn draw the svg of the chart while including responsive dimensions with resize observer
+ * @function LineChart Draw the svg Line chart with D3.js
+ * @returns {JSX} : a Radial Pie Chart
+ * @component
+*/
 
 const Wrapper = styled.div`
     display: inline-block;
     position: relative;
     width: 100%;
     height: 100%;
-    // padding-bottom: 100%;
     vertical-align: top;
     overflow: hidden;
     background: #FBFBFB;
@@ -28,8 +67,8 @@ export default function LineChart({ data }) {
   const svgRef = useRef()
   const wrapperRef = useD3(svgRef, data, (dimensions) => {
     
-    console.log('userData', data);
-    console.log('svgDimensions :', dimensions);
+    // console.log('userData', data);
+    // console.log('svgDimensions :', dimensions);
 
     if (!dimensions) return
 
@@ -37,16 +76,12 @@ export default function LineChart({ data }) {
     const width = (dimensions.width -margin.left -margin.right);
     const height = (dimensions.height -margin.top -margin.bottom);
 
-    console.log('width :', dimensions.width);
-    console.log('height :', dimensions.height);
-    // const width = parseInt(d3.select(svgRef.current).style('width')) - margin.left - margin.right
-		// const height = parseInt(d3.select(svgRef.current).style('height')) - margin.top - margin.bottom
-    // const width = parseInt(d3.select(svgRef.current).style('width')) - margin.left - margin.right
-		// const height = parseInt(d3.select(svgRef.current).style('height')) - margin.top - margin.bottom
-		
+    // console.log('width :', dimensions.width);
+    // console.log('height :', dimensions.height);
 	
     const dayInitMaj = ['L', 'M', 'M', 'J', 'V', 'S', 'D'];
-    console.log('dayInitMaj :', dayInitMaj)
+	
+    // console.log('dayInitMaj :', dayInitMaj)
 
 
 	// append the svg object to the body of the page
@@ -58,12 +93,12 @@ export default function LineChart({ data }) {
     .append("g")
 		// add a title
 		svg.append('text')
-			.attr('fill', '#fff')
-			.attr('x', margin.right)
-			.attr('y', margin.top)
-			.text('Durée moyenne des sessions')
-			.style('font-size', '1rem')
-      .style('font-weight', '700')
+		.attr('fill', '#fff')
+		.attr('x', margin.right)
+		.attr('y', margin.top)
+		.text('Durée moyenne des sessions')
+		.style('font-size', '1rem')
+      	.style('font-weight', '700')
 
 		// X axis
 		const x = d3.scaleBand()
@@ -94,10 +129,10 @@ export default function LineChart({ data }) {
       .select('.domain')
       .remove()
 
-		//tooltips
+	//tooltips
     // Just to be sure a tooltip don't go outside the chart
       function displayTooltip(index) {
-        if (x(index) <= width -margin.left -margin.right)
+        if (x(index) &lt;= width -margin.left -margin.right)
           return x(index)
         else return x(index) -margin.left -margin.right
       }
@@ -176,18 +211,48 @@ export default function LineChart({ data }) {
             .attr("stroke", "#ffffff")
             .attr("stroke-width", 2)
             .attr("d", d3.line()
-              .curve(d3.curveMonotoneX) //curveCatmullRom.alpha(.5)
+              .curve(d3.curveMonotoneX) //curveCatmullRom
               .x(function(d) { return x(d.day)})
               // .x(function(d) { return x(tickLabels.indexOf(d.day))})
               .y(function(d) { return y(d.sessionLength)})
               )
 		})
 	})     
-// height: '16rem', width: '100%', 
   return (
-    <Wrapper ref={wrapperRef}>
-      <svg ref={svgRef} style={{ height: '100%', width: '100%', backgroundColor: '#FF0000', borderRadius: '5px'}}> 
-      </svg>
-    </Wrapper>
+    &lt;Wrapper ref={wrapperRef}>
+      &lt;svg ref={svgRef} style={{ height: '100%', width: '100%', backgroundColor: '#FF0000', borderRadius: '5px'}}> 
+      &lt;/svg>
+    &lt;/Wrapper>
   )
 }
+
+LineChart.propTypes={
+  sessions : PropTypes.arrayOf(
+    PropTypes.shape({
+      day: PropTypes.number,
+      sessionLength: PropTypes.number,
+    })
+  )
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="User.html">User</a></li></ul><h3>Global</h3><ul><li><a href="global.html#Api">Api</a></li><li><a href="global.html#LoaderWrapper">LoaderWrapper</a></li><li><a href="global.html#PieChartDrawthesvgpiechartwithPieChart">PieChart Draw the svg pie chart with PieChart</a></li><li><a href="global.html#RadarChart">RadarChart</a></li><li><a href="global.html#UserCard">UserCard</a></li><li><a href="global.html#UserHeader">UserHeader</a></li><li><a href="global.html#getAllDataMocked">getAllDataMocked</a></li><li><a href="global.html#useSportSeeApi">useSportSeeApi</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.0</a> on Thu Dec 29 2022 18:07:52 GMT+0100 (heure normale d’Europe centrale)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

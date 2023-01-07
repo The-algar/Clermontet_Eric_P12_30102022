@@ -40,9 +40,7 @@ const Navbar = styled.ul`
 export const RightNav = ({ open }) => {
   return (
     <Navbar open={ open } >
-        {/* <li className="accueil">Accueil</li> */}
         <StyledNav to="/">Accueil</StyledNav>
-        {/* <li className="profil">Profil</li> */}
         <StyledNav to="#">Profil</StyledNav>
         <StyledNav to="#">Réglage</StyledNav>
         <StyledNav to="#">Communauté</StyledNav>
