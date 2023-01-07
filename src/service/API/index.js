@@ -6,9 +6,9 @@ const BASE_URL = 'http://localhost:3000/user/';
 const END_POINTS = (id) => {
   return [
     `${BASE_URL}${id}`,
-    // `${BASE_URL}${id}/activity`,
-    // `${BASE_URL}${id}/average-sessions`,
-    // `${BASE_URL}${id}/performance`,
+    `${BASE_URL}${id}/activity`,
+    `${BASE_URL}${id}/average-sessions`,
+    `${BASE_URL}${id}/performance`,
   ];
 };
 
@@ -18,6 +18,7 @@ const END_POINTS = (id) => {
  * @param {string} userId
  * @returns {undefined|Object}
  */
+
 export function Api(userId) {
   const [apiData, setData] = useState({});
   const [isApiLoading, setIsLoading] = useState(true);
@@ -29,14 +30,12 @@ export function Api(userId) {
       axios
         .all(END_POINTS(userId).map((endPoint) => axios.get(endPoint)))
         .then(
-          // axios.spread((user, activity, average, perf) => {
-          axios.spread((user) => {
+          axios.spread((user, activity, average, perf) => {
             JSON.stringify(user);
-            // JSON.stringify(activity);
-            // JSON.stringify(average);
-            // JSON.stringify(perf);
-            // return { user, activity, average, perf };
-            return { user };
+            JSON.stringify(activity);
+            JSON.stringify(average);
+            JSON.stringify(perf);
+            return { user, activity, average, perf };
           })
         )
         .then((results) => {
@@ -54,17 +53,16 @@ export function Api(userId) {
     fetchData();
   }, [userId]);
 
-  // const { activity, user, perf, average } = apiData;
-  const { user } = apiData;
-  // const sessionsApi = activity?.data?.data;
-  // const performancesApi = perf?.data?.data;
+  const { activity, user, perf, average } = apiData;
+  const activityApi = activity?.data?.data;
+  const performancesApi = perf?.data?.data;
   const userApi = user?.data?.data;
-  // const averageApi = average?.data?.data;
+  const averageApi = average?.data?.data;
   return {
     userApi,
-    // sessionsApi,
-    // performancesApi,
-    // averageApi,
+    activityApi,
+    performancesApi,
+    averageApi,
     isApiLoading,
     errorApi,
   };

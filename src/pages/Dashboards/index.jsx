@@ -89,7 +89,7 @@ const ChartsGrid = styled.div`
     overflow: hidden;
   }
 `
-const WeightChartWrapper = styled.div`
+const ActivityChartWrapper = styled.div`
   grid-column: 1/4;
   background-color: aliceblue;
   align-items: strecht;
@@ -146,14 +146,14 @@ function Dashboards () {
 
   const {
   userApi,
-  // weightApi,	
+  activityApi,	
   // radarApi,				
   // objectivesApi,				
   isApiLoading,
   errorApi,
   } = Api(userId);
   console.log('userApi :', userApi);
-  // console.log('weightApi :', weightApi);
+  console.log('activityApi :', activityApi);
   // console.log('radarApi :', radarApi);
   // console.log('objectivesApii :', objectivesApi);
   console.log('isApiLoading  ', isApiLoading, errorApi);
@@ -183,7 +183,7 @@ function Dashboards () {
     }
     getMockedData();
     setState({ ...state, isLoading: false });
-    // console.log('state: ', state);
+    console.log('state: ', state);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -223,15 +223,15 @@ function Dashboards () {
             />
             <ContentGrid>
               <ChartsGrid>
-                <WeightChartWrapper>
+                <ActivityChartWrapper>
                   {/* <DailyActivity
                     userId={userId}
                     data={mockedData}
-                    dailyActivityApi={weightApi?.sessions}
+                    dailyActivityApi={activityApi?.sessions}
                     api={api}
                   /> */}
                   <BarChart data={data} />
-                </WeightChartWrapper>
+                </ActivityChartWrapper>
                 <ObjectivesChartWrapper
                   // userId={userId}
                   // data={mockedData}
