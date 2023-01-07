@@ -32,12 +32,13 @@ export function Api(userId) {
         .then(
           axios.spread((user, activity, average, perf) => {
             return { 
-            user: user.data.data, 
-            activity: activity.data.data, 
-            average: average.data.data,
-            perf: perf.data.data, }
-            })
-        )
+          user: user.data.data, 
+          activity: activity.data.data, 
+          average: average.data.data,
+          perf: perf.data.data, }
+      })
+    )
+
         .then((results) => {
           setData(results);
           setIsLoading(false);

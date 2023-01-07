@@ -21,13 +21,14 @@
 <img src="https://img.shields.io/badge/D3-7.6.1-red"/>
 
 
-12th project of the OpenClassrooms "Web app developer - JavaScript React" course, Sportsee is an application for monitoring your physical activity. For this project I'm using React, REeact-router and D3.j and is bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+12th project of the OpenClassrooms "Web app developer - JavaScript React" course, Sportsee is an application for monitoring your physical activity. For this project I'm using React, React-router and D3.js and the project is bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 **Useful links:**
 
 - [Repository 📖](https://github.com/The-algar/Clermontet_Eric_P12_30102022)
 - [Documentation 📑](https://the-algar.github.io/Clermontet_Eric_P12_30102022/jsdoc/)
 - [Figma mock-up 🖼️](https://www.figma.com/file/BMomGVZqLZb811mDMShpLu/UI-design-Sportify-FR?node-id=1%3A2)
+- [User stories 📑](https://www.notion.so/Tableau-de-bord-SportSee-6686aa4b5f44417881a4884c9af5669e)
 
 # Getting Started with SportSee App
 

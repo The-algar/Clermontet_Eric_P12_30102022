@@ -14,7 +14,7 @@ export class User {
      * @return  {string}  FirstName
      */
     get _firstName() {
-        const user = this._data?.user
+        const user = this._data.user
         return user?.userInfos.firstName;
     }
   }
