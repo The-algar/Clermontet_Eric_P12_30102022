@@ -10,6 +10,6 @@ export const getAllDataMocked = () => {
   return axios.get(data).then((response) => response.data);
 };
 
-// export const getDataByUserId = (userId, data) => {
-//   return data.map((obj) => obj.userId === userId);
-// };
+export const getDataByUserId = (userId, data) => {
+  return data.map((obj) => obj.userId === userId);
+};

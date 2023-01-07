@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route,  } from "react-router-dom";
 import Header from "./components/Header";
 import './index.css';
 import Home from './pages/Home';
+import Dashboards from './pages/Dashboards';
 import Error from './components/Error'
 import { GlobalStyles } from './utils/GlobalStyle';
 
@@ -15,7 +16,8 @@ root.render(
         <Header />
         <Routes>
             <Route path="/" element={<Home />} />
-            {/* <Route path="/user/:id" element={<Stats />} /> */}
+            <Route path="/user/:userId" element={<Dashboards />} />
+            <Route path="/user/:userId/:api" element={<Dashboards />} />
             <Route path="*" element={<Error />} />
         </Routes>
     </BrowserRouter>
