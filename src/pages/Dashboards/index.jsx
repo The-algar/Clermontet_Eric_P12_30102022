@@ -7,7 +7,7 @@ import SideMenu from '../../components/SideMenu'
 import { getAllDataMocked } from '../../service/mockedAPI'
 import UserHeader from '../../components/UserHeader'
 import colors from '../../utils/style/colors.js'
-// import Error from '../../components/Error'
+import Error from '../../components/Error'
 
 const DashboardWrapper = styled.main`
   display: grid;
@@ -150,19 +150,7 @@ function Dashboards () {
   if (errorApi || error) {
     return (
       <div>
-        <DashboardWrapper>
-          <SideMenu />
-          <MainContent>
-            <UserHeader
-              userId={userId}
-              message={
-                api ? errorApi : ' :-( who the fuck are you? '
-              }
-              isLoading={isLoading}
-              data={mockedData}
-            />
-          </MainContent>
-        </DashboardWrapper>
+        <Error />
       </div>
     );
   }
