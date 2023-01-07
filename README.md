@@ -1,8 +1,5 @@
 # This project was made with :
 ![made-with-create-react-app](https://user-images.githubusercontent.com/75996200/166201532-1a68d09e-7f75-4106-ba2c-ac047ccc4cc4.svg)
-![cra-35](https://user-images.githubusercontent.com/33525561/211143614-f2f60956-5970-47c7-95f5-9e2eb78c5226.svg)
-<img src="https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB"/> 
-<img src="https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white"/>
 
 **Dependencies**
 
