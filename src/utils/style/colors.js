@@ -7,7 +7,8 @@ const colors = {
   redChartBg:'#FF0000',
   weightBullet: '#282D30',
   caloriesBullet: '#E60000',
-  greyLegends: '#74798C'
+  greyLegends: '#74798C',
+  nobg: '#fff'
 }
 
 export default colors

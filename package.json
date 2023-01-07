@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@github/g-emoji-element": "^1.1.5",
     "@react-hook/resize-observer": "^1.2.6",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
@@ -16,7 +17,6 @@
     "react-loading": "^2.0.3",
     "react-router-dom": "^6.4.2",
     "react-scripts": "5.0.1",
-    "recharts": "^2.1.16",
     "styled-components": "^5.3.6",
     "util": "^0.12.5",
     "web-vitals": "^2.1.4"
