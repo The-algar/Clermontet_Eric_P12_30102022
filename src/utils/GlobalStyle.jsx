@@ -20,7 +20,7 @@ export const GlobalStyles = createGlobalStyle`
     overflow: hidden;
 
     @media (min-width: 991px) {
-      max-width: 1024px;
+      max-width: 1440px;
       max-height: auto;
     }
   }
