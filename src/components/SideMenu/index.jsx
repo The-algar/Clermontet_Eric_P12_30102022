@@ -1,4 +1,3 @@
-// import './SideMenu.css';
 import styled from "styled-components"
 import barbell from '../../assets/barbell.svg';
 import bike from '../../assets/bike.svg';

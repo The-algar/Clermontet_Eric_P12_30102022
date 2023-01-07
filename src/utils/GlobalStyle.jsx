@@ -13,4 +13,15 @@ export const GlobalStyles = createGlobalStyle`
   *, *::after, *::before {
     box-sizing: border-box;
   }
+
+  #root {
+    // max-width: 1440px;
+    margin: auto;
+    overflow: hidden;
+
+    @media (min-width: 991px) {
+      max-width: 1024px;
+      max-height: auto;
+    }
+  }
 `

@@ -1,5 +1,7 @@
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
+// import styled, { keyframes } from 'styled-components'
 import styled from 'styled-components'
+// import colors from './colors'
 
 // const rotate = keyframes`
 //   from {
@@ -21,22 +23,22 @@ import styled from 'styled-components'
 //   width: 0;
 // `
 
-// export const StyledLink = styled(NavLink)`
-//   padding: 10px 15px;
-//   color: #FF6060;
-//   text-decoration: none;
-//   font-size: 24px;
-//   text-align: center;
-//   margin:0 !important;
-//   &.active { 
-//     text-decoration: underline;
-//   }
-//       @media screen and (max-width: 768px) {
-//         font-size: 14px;
-//         padding: 133px 0 0 10px;
-//         // padding-top: 133px;
-//     }
-// `
+export const StyledLink = styled(NavLink)`
+  padding: 10px 15px;
+  color: #FF6060;
+  text-decoration: none;
+  font-size: 24px;
+  text-align: center;
+  margin:0 !important;
+  &.active { 
+    text-decoration: underline;
+  }
+      @media screen and (max-width: 768px) {
+        font-size: 14px;
+        padding: 133px 0 0 10px;
+        // padding-top: 133px;
+    }
+`
 export const StyledNav = styled(Link)`
   color: white;
   text-decoration: none;
