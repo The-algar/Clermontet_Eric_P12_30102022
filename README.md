@@ -1,70 +1,66 @@
-# Getting Started with Create React App
+# This project was made with :
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![made-with-create-react-app](https://user-images.githubusercontent.com/75996200/166201532-1a68d09e-7f75-4106-ba2c-ac047ccc4cc4.svg)
 
-## Available Scripts
+**Dependencies**
 
-In the project directory, you can run:
+<img src="https://img.shields.io/badge/React-18.2.0-blue"/>&nbsp;&nbsp;
+<img src="https://img.shields.io/badge/React--dom-18.2.0-blue"/>&nbsp;&nbsp;
+<img src="https://img.shields.io/badge/React--Router--dom-6.4.2-blue"/>&nbsp;&nbsp;
+<img src="https://img.shields.io/badge/Node--Sass-7.0.3-green"/>&nbsp;&nbsp;
+<img src="https://img.shields.io/badge/Axios-1.1.3-yellow"/>&nbsp;&nbsp;
+<img src="https://img.shields.io/badge/Eslint-8.26.0-yellow"/>
+
+**devDependencies**
+
+<img src="https://img.shields.io/badge/Prettier-2.7.1-orange"/>&nbsp;&nbsp;
+<img src="https://img.shields.io/badge/Jsdoc-4.0.0-orange"/>
+
+**Visualization package**
+
+<img src="https://img.shields.io/badge/D3-7.6.1-red"/>
+
+
+12th project of the OpenClassrooms "Web app developer - JavaScript React" course, Sportsee is an application for monitoring your physical activity. For this project I'm using React, REeact-router and D3.j and is bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+**Useful links:**
+
+- [Repository 📖](https://github.com/The-algar/Clermontet_Eric_P12_30102022)
+- [Documentation 📑](https://the-algar.github.io/Clermontet_Eric_P12_30102022/jsdoc/)
+- [Figma mock-up 🖼️](https://www.figma.com/file/BMomGVZqLZb811mDMShpLu/UI-design-Sportify-FR?node-id=1%3A2)
+
+# Getting Started with SportSee App
+
+This project needs backend and frontend apps.
+
+## Backend
+
+clone this repo https://github.com/OpenClassrooms-Student-Center/P9-front-end-dashboard
+
+### `npm install`
+
+to install the backend
 
 ### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+to run the backend. Message 'magic happens on port 3000' indicates the backend has successfully started on port 3000
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Frontend
 
-### `npm test`
+clone this repo https://github.com/The-algar/Clermontet_Eric_P12_30102022
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### `npm install`
 
-### `npm run build`
+to install the frontend
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### `npm start`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+to run the frontend. A message will warn you that port 3000 is already in use and asks if you want to use another one. Then type the key 'y' to accept. A browser window then opens so that you can access the app
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## JS Doc
 
-### `npm run eject`
+Documentation by JSDoc is available from the jsdoc directory. Launch your Live server and select the jsdoc directory to vizualize the code documentation or go to https://the-algar.github.io/Clermontet_Eric_P12_30102022/jsdoc/.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## MOCK / API Configuration switch
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+A boolean switch is displayed on the home page. If you select one of the 2 users with the "Mock" default state ON, mocked data is chosen, if you switch the button to API, API data is chosen. In both scenarios you will be led to the dashboard page accordingly.

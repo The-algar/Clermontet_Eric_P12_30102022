@@ -15,7 +15,6 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   #root {
-    // max-width: 1440px;
     margin: auto;
     overflow: hidden;
 

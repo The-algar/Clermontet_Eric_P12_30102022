@@ -4,7 +4,7 @@ import styled from "styled-components"
 import Loader from '../../components/Loader';
 import HomeLogo from '../../assets/SportSeeLogo.svg'
 import SideMenu from '../../components/SideMenu'
-import { getAllDataMocked } from '../../service/mockedAPI/index.js'
+import { getAllDataMocked } from '../../service/mockedAPI'
 import UserProfile from '../../components/UserProfile'
 import ToggleSwitch from '../../components/ToggleSwitch'
 import colors from '../../utils/style/colors.js'
@@ -121,7 +121,7 @@ function Home () {
                     <UserProfile
                     key={user.userId}
                     userId={user.userId}
-                    cover={`/images/${user.userInfos.firstName}.jpg`}
+                    cover={`/images/${user?.userInfos.firstName}.jpg`}
                     data={user}
                     api={checked}
                   />

@@ -10,7 +10,7 @@ export const useD3 = (svgRef, data, renderChartFn) => {
       renderChartFn(dimensions, d3.select(svgRef.current));
       return () => {};
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [data, data.length, dimensions]);
+    }, [data, dimensions]);
 
   return wrapperRef;
 }

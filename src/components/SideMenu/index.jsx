@@ -39,10 +39,10 @@ const SideMenu = () => {
     return (
         <SideMenuLeft>
             <NavMenuLeft>
-                <IconMenuLeft src={yoga} alt="" />
-                <IconMenuLeft src={swim} alt="" />
-                <IconMenuLeft src={bike} alt="" />
-                <IconMenuLeft src={barbell} alt="" />
+                <IconMenuLeft src={yoga} alt="Meditation" />
+                <IconMenuLeft src={swim} alt="Swimming" />
+                <IconMenuLeft src={bike} alt="Biking" />
+                <IconMenuLeft src={barbell} alt="Body-Building" />
             </NavMenuLeft>
             <CopyrightLeft>Copyright SportSee 2020</CopyrightLeft>
         </SideMenuLeft>
