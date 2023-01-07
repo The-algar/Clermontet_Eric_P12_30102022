@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@github/g-emoji-element": "^1.1.5",
     "@react-hook/resize-observer": "^1.2.6",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
@@ -46,6 +45,7 @@
     ]
   },
   "devDependencies": {
+    "jsdoc": "^4.0.0",
     "prettier": "2.7.1"
   }
 }

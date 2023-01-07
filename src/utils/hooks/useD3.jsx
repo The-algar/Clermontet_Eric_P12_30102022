@@ -7,6 +7,7 @@ export const useD3 = (svgRef, data, renderChartFn) => {
   const dimensions = useResizeObserver(wrapperRef);
 
   useEffect(() => {
+      d3.select(svgRef.current).selectAll('svg').remove()
       renderChartFn(dimensions, d3.select(svgRef.current));
       return () => {};
     // eslint-disable-next-line react-hooks/exhaustive-deps

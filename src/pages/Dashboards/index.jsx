@@ -8,6 +8,9 @@ import glucidesIcon from '../../assets/glucides-icon.svg'
 import lipidesIcon from '../../assets/lipides-icon.svg'
 import proteinsIcon from '../../assets/proteines-icon.svg'
 import BarChart from '../../components/D3/Barchart'
+import ObjectivesChart from '../../components/D3/Linechart'
+import RadarChart from '../../components/D3/Radarchart'
+import KpiChart from '../../components/D3/Piechart'
 import KeyData from '../../components/D3/KeyData'
 import UserHeader from '../../components/UserHeader'
 import { getData } from '../../service'
@@ -19,93 +22,169 @@ const DashboardWrapper = styled.main`
   grid-template-columns: 7.5rem 1fr;
 `
 const MainContent = styled.section`
+  // --gridheight: 880px;
+  // --gridwidth: 768px;
   padding: 3rem 5rem;
 
-  @media (max-width: 1440px) {
-    padding: 1.5rem 2rem;
-  }
-  @media (max-width: 768px) {
-    padding: 1rem 2rem;
-  }
-`
-const ContentGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 2rem;
-  @media (max-width: 1240px) {
-    gap: 1rem;
-  }
-  @media (max-width: 968px) {
-    grid-template-row: repeat(3, 1fr);
-  }
+  // @media (max-width: 1440px) {
+  //   padding: 1.5rem 2rem;
+  // }
+  // @media (max-width: 768px) {
+  //   padding: 1rem 2rem;
+  // }
 `
 const ChartsGrid = styled.div`
+  // background-color: deepskyblue;
+  // height: var(--gridheight);
   display: grid;
-  grid-column: 1/4;
-  grid-template: 20rem 16rem / repeat(3, 1fr);
-  gap: 2rem;
-
-  // @media (max-width: 1440px) {
-  //   grid-template: 18rem 14rem / repeat(3, 1fr);
-  //   gap: 1rem;
-  // }
-  // @media (max-width: 968px) {
-  //   grid-template: 16rem 11rem / repeat(3, 1fr);
-  //   gap: 0.75rem;
-  // }
-
-  > * {
-    border-radius: 0.25rem;
-    overflow: hidden;
-  }
+  grid-column: 1 / 4;
+  grid-column-end: 4;
+  grid-row: 1 / 3;
+  grid-row-end: 4;
+  grid-gap: 2rem;
+    // @media (max-width: 968px) {
+    //   grid-template-columns: repeat(3, 1fr);
+    //   grid-template-rows: repeat(6, 1fr);
+    // }
 `
 const ActivityChartWrapper = styled.div`
-  grid-column: 1/4;
-  background-color: aliceblue;
-  align-items: strecht;
-  justify-content: center;
-  width: 100%;
-  height: max-content;
-`
-const ObjectivesChartWrapper = styled.div`
-  grid-column: 1/2;
-  background-color: aliceblue;
-`
-const RadarChartWrapper = styled.div`
-  grid-column: 2/3;
-  background-color: aliceblue;
-`
-const KpiChartWrapper = styled.div`
-  height: 100%;
-  grid-column: 3/4;
-  background-color: aliceblue;
-`
-const NutritionFactsWrapper = styled.div`
+  // background-color: grey;
+  grid-column: 1 / 4;
+  grid-row: 1 / 2;  
   display: grid;
-  grid-template-column: repeat(1, 1fr);
-  background-color: transparent; // aliceblue
-  gap: 2rem;
-  > * {
-    border-radius: 0.25rem;
-    overflow: hidden;
-  }
-  @media (max-width: 1440px) {
-    gap: 1.25rem;
-  }
-  @media (max-width: 968px) {
-    grid-template-column: repeat(2, 1fr);
-    grid-row: 3/3;
-    display: flex;
-    justify-content: flex-start;
-    flex-direction: row, wrap !important;
-    min-height: 256px;
-    margin-top: 1rem;
-    gap: 5.7rem;
-  }
+    @media (max-width: 968px) {
+      grid-column: 1 / 4;
+      grid-row: 1 / 2;  
+      justify-items: stretch;
+    }
+`
+const ThreeChartsWrapper = styled.div`
+  // background-color: grey;
+  height: 258px;
+  grid-column: 1 / 3;
+  grid-column-end: 4;
+  grid-row: 2 / 3;  
+  display: grid;
+  justify-content: stretch;
+    @media (max-width: 968px) {
+      height: 774px;
+      grid-column: 1 / 3;
+      grid-row: 2 / 5;  
+      grid-column-end: 4;
+      margin: 0;
+      padding: 0;
+    }
+`
+const ObjectivesChartTile = styled.div`
+  background-color: gray;
+  grid-column: 1;
+  grid-row: 1;  
+  margin-right: 1rem;
+    @media (max-width: 968px) {
+      grid-column: 1;
+      margin-right: 0;
+      margin-bottom: 1rem;
+    }
+`
+const RadarChartTile = styled.div`
+  background-color: purple;
+  grid-column: 2;
+  grid-row: 1;  
+  margin-right: 1rem;
+    @media (max-width: 968px) {
+      grid-column: 1;
+      grid-row: 2;
+      margin-right: 0;
+      margin-bottom: 1rem;
+    }
+`
+const KpiChartTile = styled.div`
+  background-color: orange;
+  grid-column: 3 / 3;
+  grid-row: 1;  
+  margin: 0;
+  // margin-right: 1rem;
+    @media (max-width: 968px) {
+      grid-column: 1;
+      grid-row: 3;
+    }
+`
+const NutritionFactsWrapper = styled.aside`
+  // background-color: lightgrey;
+  grid-column: 4 ;
+  grid-row: 1 / 5;  
+  display: grid;
+  align-self: start;
+  gap: 2.5rem;
+    @media (max-width: 968px) {
+      grid-column: 1 / 3;
+      grid-column-end: 4;
+      grid-row: 5 / 7; 
+      display: grid;
+      justify-content: space-between;
+      justify-items: stretch;
+      align-items: center;
+      margin-top: 0;
+      padding: 0;
+      // width: var(--gridwidth);
+    }
+`
+const KeyData1 = styled.div`
+  // background-color: orange;
+  grid-column: 1;
+  grid-row: 1;  
+  margin: 0;
+  padding: 0;
+    @media (max-width: 968px) {
+      grid-column: 1;
+      grid-column-end: 3;
+      margin: 0;
+      padding: 0;
+    }
+`
+const KeyData2 = styled.div`
+  grid-column: 1;
+  grid-row: 2;  
+  margin: 0;
+  padding: 0;
+  // background-color: aliceblue;
+    @media (max-width: 968px) {
+      grid-row: 1; 
+      grid-column: 2;
+      grid-column-end: 3;
+      justify-self: end;
+    }
+`
+const KeyData3 = styled.div`
+  // background-color: red;
+  grid-column: 1;
+  grid-row: 3; 
+  margin: 0;
+  padding: 0;
+  // padding-left: 1rem;
+    @media (max-width: 968px) {
+      grid-column: 1;
+      grid-column-end: 3;
+      grid-row: 2;
+      justify-self: start;
+    }
+`
+const KeyData4 = styled.div`
+  // background-color: green;
+  grid-column: 1;
+  grid-row: 4;  
+  margin: 0;
+  padding: 0;
+  // padding-left: 1rem;
+    @media (max-width: 968px) {
+      grid-column: 2;
+      grid-column-end: 3;
+      grid-row: 2;
+      justify-self: end;
+    }
 `
 const initialState = {
-  isLoading
-: true,
+  isLoading: true,
   error: null,
   isMockDataLoaded: false,
   data: null,
@@ -175,71 +254,67 @@ function Dashboards() {
         <DashboardWrapper>
           <SideMenu />
           <MainContent>
-            <UserHeader
-              userId={userId}
-              message={user_message}
-              isLoading
-={isLoading
-}
-              data={data}
-              api={api}
-            />
-            <ContentGrid>
+            <UserHeader userId={userId} message={user_message} isLoading={isLoading} data={data} api={api} />
               <ChartsGrid>
                 <ActivityChartWrapper>
                   <BarChart userId={userId} data={data} api={api} />
-                  {/* <BarChart data={data} /> */}
                 </ActivityChartWrapper>
-                <ObjectivesChartWrapper userId={userId} data={data} api={api} />
-                <RadarChartWrapper userId={userId} data={data} api={api} />
-                <KpiChartWrapper userId={userId} data={data} api={api} />
+                <ThreeChartsWrapper>
+                  <ObjectivesChartTile>
+                    <ObjectivesChart userId={userId} data={data} api={api} />
+                  </ObjectivesChartTile>
+                  <RadarChartTile>
+                    <RadarChart userId={userId} data={data} api={api} />
+                    {/* <ObjectivesChart userId={userId} data={data} api={api} /> */}
+                  </RadarChartTile>
+                  <KpiChartTile> 
+                    <KpiChart userId={userId} data={data} api={api} />
+                    {/* <ObjectivesChart userId={userId} data={data} api={api} /> */}
+                  </KpiChartTile>
+                </ThreeChartsWrapper>
+                <NutritionFactsWrapper>
+                  <KeyData1>
+                    <KeyData
+                      isLoading={isLoading}
+                      data={data}
+                      api={api}
+                      icon={caloriesIcon}
+                      info={`${data?.user?.keyData.calorieCount}kCal`}
+                      text="Calories"
+                    />
+                  </KeyData1>
+                  <KeyData2>
+                    <KeyData
+                      isLoading={isLoading}
+                      data={data}
+                      api={api}
+                      icon={proteinsIcon}
+                      info={`${data?.user?.keyData.proteinCount}g`}
+                      text="Proteines"
+                    />
+                  </KeyData2>
+                  <KeyData3>
+                    <KeyData
+                      isLoading={isLoading}
+                      data={data}
+                      api={api}
+                      icon={glucidesIcon}
+                      info={`${data?.user?.keyData.carbohydrateCount}g`}
+                      text="Glucides"
+                    />
+                  </KeyData3>
+                  <KeyData4>
+                    <KeyData
+                      isLoading={isLoading}
+                      data={data}
+                      api={api}
+                      icon={lipidesIcon}
+                      info={`${data?.user?.keyData.lipidCount}g`}
+                      text="Lipides"
+                    />
+                  </KeyData4>
+                </NutritionFactsWrapper>
               </ChartsGrid>
-              <NutritionFactsWrapper>
-                <aside>
-                  <KeyData
-                    isLoading
-={isLoading
-}
-                    data={data}
-                    api={api}
-                    icon={caloriesIcon}
-                    // keyDataApi={activityApi?.keyData}
-                    info={`${data?.user?.keyData.calorieCount}kCal`} //data.data.user.keyData.
-                    text="Calories"
-                  />
-                  <KeyData
-                    isLoading
-={isLoading
-}
-                    data={data}
-                    api={api}
-                    icon={proteinsIcon}
-                    info={`${data?.user?.keyData.proteinCount}g`}
-                    text="Proteines"
-                  />
-                  <KeyData
-                    isLoading
-={isLoading
-}
-                    data={data}
-                    api={api}
-                    icon={glucidesIcon}
-                    info={`${data?.user?.keyData.carbohydrateCount}g`}
-                    text="Glucides"
-                  />
-                  <KeyData
-                    isLoading
-={isLoading
-}
-                    data={data}
-                    api={api}
-                    icon={lipidesIcon}
-                    info={`${data?.user?.keyData.lipidCount}g`}
-                    text="Lipides"
-                  />
-                </aside>
-              </NutritionFactsWrapper>
-            </ContentGrid>
           </MainContent>
         </DashboardWrapper>
       </>
