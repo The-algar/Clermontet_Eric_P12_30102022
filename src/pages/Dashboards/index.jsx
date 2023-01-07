@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styled from "styled-components"
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import { Api } from '../../service/API';
 import Loader from '../../components/Loader';
 import SideMenu from '../../components/SideMenu'
@@ -19,13 +19,16 @@ const MainContent = styled.section`
   @media (max-width: 1340px) {
     padding: 1.5rem 2rem;
   }
+  @media (max-width: 768px) {
+    padding: 1rem 2rem;
+  }
 `
 const ContentGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 2rem;
 
-  @media (max-width: 1340px) {
+  @media (max-width: 1240px) {
     gap: 1rem;
   }
   @media (max-width: 968px) {
@@ -54,23 +57,25 @@ const ChartsGrid = styled.div`
 `
 const WeightChartWrapper = styled.div`
   grid-column: 1/4;
-  background-color: ${colors.backgroundLight};
+  background-color: aliceblue;
 `
 const ObjectivesChartWrapper = styled.div`
-  grid-column: 2/4;
-  background: ${colors.backgroundLight};
+  grid-column: 1/2;
+  background-color: aliceblue;
 `;
 const RadarChartWrapper = styled.div`
-  grid-column: 3/4;
-  background: ${colors.backgroundLight};
+  grid-column: 2/3;
+  background-color: aliceblue;
 `
 const KpiChartWrapper = styled.div`
-  grid-column: 4/4;
-  background: ${colors.backgroundLight};
+  height: 100%;
+  grid-column: 3/4;
+  background-color: aliceblue;
 `
 const NutritionFactsWrapper = styled.div`
   display: grid;
   grid-template-rows: repeat(4, 1fr);
+  background-color: aliceblue;
   gap: 2rem;
   > * {
     border-radius: 0.25rem;
@@ -80,12 +85,15 @@ const NutritionFactsWrapper = styled.div`
     gap: 1.25rem;
   }
   @media (max-width: 968px) {
-    display: flex;
-    align-items: center;
-    gap: 2.5rem;
-    justify-content: center;
-  }
-  @media (max-width: 788px) {
+    // display: flex;
+    // align-items: center;
+    // min-height: 175px;
+    // gap: 2.5rem;
+    // justify-content: center;
+    // margin-right: 0!important;
+    grid-column: 1/4;
+    min-height: 256px;
+    gap: 2rem;
   }
 `
 const initialState = {
@@ -105,11 +113,22 @@ function Dashboards () {
 
   const {
   userApi,
+  // weightApi,	
+  // radarApi,				
+  // objectivesApi,				
   isApiLoading,
   errorApi,
   } = Api(userId);
-  // console.log('userApi :', userApi);
+  console.log('userApi :', userApi);
+  // console.log('weightApi :', weightApi);
+  // console.log('radarApi :', radarApi);
+  // console.log('objectivesApii :', objectivesApi);
   // console.log('isApiLoading  ', isApiLoading, errorApi);
+
+  const navigate = useNavigate();
+  if (!['12', '18'].includes(userId)) {
+    navigate('/404');
+  }
 
   const { isLoading, isDataLoaded, data: mockedData, error } = state;
 
@@ -136,6 +155,7 @@ function Dashboards () {
   }, []);
 
   if (isLoading || isApiLoading) {
+  // if (isLoading) {
     return (
       <>
         <Loader
@@ -150,7 +170,7 @@ function Dashboards () {
   if (errorApi || error) {
     return (
       <div>
-        <Error />
+        <Error/>
       </div>
     );
   }
@@ -170,12 +190,39 @@ function Dashboards () {
             />
             <ContentGrid>
               <ChartsGrid>
-                <WeightChartWrapper />
-                <ObjectivesChartWrapper/>
-                <RadarChartWrapper/>
-                <KpiChartWrapper/>
+                <WeightChartWrapper>
+                  {/* <DailyActivity
+                    userId={userId}
+                    data={mockedData}
+                    dailyActivityApi={weightApi?.sessions}
+                    api={api}
+                  /> */}
+                </WeightChartWrapper>
+                <ObjectivesChartWrapper
+                  // userId={userId}
+                  // data={mockedData}
+                  // averageApi={averageApi}
+                  // api={api}
+                />
+                <RadarChartWrapper
+                  // userId={userId}
+                  // data={mockedData}
+                  // radarApi={radarApi}
+                  // api={api}
+                />
+                <KpiChartWrapper
+                  // userId={userId}
+                  // data={mockedData}
+                  // userApiScore={userApi.score}
+                  // api={api}
+                />
               </ChartsGrid>
-              <NutritionFactsWrapper/>
+              <NutritionFactsWrapper
+                // userId={userId}
+                // data={mockedData.userMainData}
+                // nutritionFactData={userApi?.keyData}
+                // api={api}
+              />
             </ContentGrid>
           </MainContent>
         </DashboardWrapper>

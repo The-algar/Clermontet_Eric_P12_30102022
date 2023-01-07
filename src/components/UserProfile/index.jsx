@@ -31,6 +31,10 @@ const UserName = styled.h2`
   letter-spacing: -1px;
   font-weight: normal;
 `
+// const UserDescription = styled.p`
+//   font-size: 18px;
+//   // color: ${colors.primary};
+// `
 const UserLink = styled.a`
   display: flex;
   flex-direction: column;
@@ -63,7 +67,8 @@ function UserProfile({ userId, cover, data, api }) {
               : data?.userInfos?.firstName}
           </UserName>
         </UserLink>
-       </UserCard>
+        {/* <UserDescription>{data?.userInfos?.age} ans</UserDescription> */}
+      </UserCard>
   );
 }
 

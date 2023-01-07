@@ -6,6 +6,9 @@ const BASE_URL = 'http://localhost:3000/user/';
 const END_POINTS = (id) => {
   return [
     `${BASE_URL}${id}`,
+    // `${BASE_URL}${id}/activity`,
+    // `${BASE_URL}${id}/average-sessions`,
+    // `${BASE_URL}${id}/performance`,
   ];
 };
 
@@ -26,8 +29,13 @@ export function Api(userId) {
       axios
         .all(END_POINTS(userId).map((endPoint) => axios.get(endPoint)))
         .then(
+          // axios.spread((user, activity, average, perf) => {
           axios.spread((user) => {
             JSON.stringify(user);
+            // JSON.stringify(activity);
+            // JSON.stringify(average);
+            // JSON.stringify(perf);
+            // return { user, activity, average, perf };
             return { user };
           })
         )
@@ -46,10 +54,17 @@ export function Api(userId) {
     fetchData();
   }, [userId]);
 
+  // const { activity, user, perf, average } = apiData;
   const { user } = apiData;
+  // const sessionsApi = activity?.data?.data;
+  // const performancesApi = perf?.data?.data;
   const userApi = user?.data?.data;
+  // const averageApi = average?.data?.data;
   return {
     userApi,
+    // sessionsApi,
+    // performancesApi,
+    // averageApi,
     isApiLoading,
     errorApi,
   };
