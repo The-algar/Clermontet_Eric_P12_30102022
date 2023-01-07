@@ -50,7 +50,7 @@ const DashboardWrapper = styled.main`
 const MainContent = styled.section`
   padding: 3rem 5rem;
 
-  @media (max-width: 1340px) {
+  @media (max-width: 1440px) {
     padding: 1.5rem 2rem;
   }
   @media (max-width: 768px) {
@@ -75,14 +75,14 @@ const ChartsGrid = styled.div`
   grid-template: 20rem 16rem / repeat(3, 1fr);
   gap: 2rem;
 
-  @media (max-width: 1340px) {
-    grid-template: 18rem 14rem / repeat(3, 1fr);
-    gap: 1rem;
-  }
-  @media (max-width: 968px) {
-    grid-template: 16rem 11rem / repeat(3, 1fr);
-    gap: 0.75rem;
-  }
+  // @media (max-width: 1440px) {
+  //   grid-template: 18rem 14rem / repeat(3, 1fr);
+  //   gap: 1rem;
+  // }
+  // @media (max-width: 968px) {
+  //   grid-template: 16rem 11rem / repeat(3, 1fr);
+  //   gap: 0.75rem;
+  // }
 
   > * {
     border-radius: 0.25rem;
@@ -92,10 +92,10 @@ const ChartsGrid = styled.div`
 const WeightChartWrapper = styled.div`
   grid-column: 1/4;
   background-color: aliceblue;
-  align-items: center;
+  align-items: strecht;
   justify-content: center;
-  // viewBox: 0 0 325 500;
-  // preserveAspectRatio: xMidYMid meet;
+  width: 100%;
+  height: max-content;
 `
 const ObjectivesChartWrapper = styled.div`
   grid-column: 1/2;
@@ -119,19 +119,14 @@ const NutritionFactsWrapper = styled.div`
     border-radius: 0.25rem;
     overflow: hidden;
   }
-  @media (max-width: 1340px) {
+  @media (max-width: 1440px) {
     gap: 1.25rem;
   }
   @media (max-width: 968px) {
-    // display: flex;
-    // align-items: center;
-    // min-height: 175px;
-    // gap: 2.5rem;
-    // justify-content: center;
-    // margin-right: 0!important;
     grid-column: 1/4;
     min-height: 256px;
-    gap: 2rem;
+    margin-top: 1rem;
+    gap: 5.7rem;
   }
 `
 const initialState = {

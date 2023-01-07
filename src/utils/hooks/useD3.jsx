@@ -1,13 +1,16 @@
-import React from 'react';
+import { useEffect, useRef} from "react"
 import * as d3 from 'd3';
+import { useResizeObserver } from "../../utils/hooks/resizeObserver"
 
-export const useD3 = (renderChartFn) => {
-    const ref = React.useRef();
+export const useD3 = (svgRef, data, renderChartFn) => {
+  const wrapperRef = useRef();
+  const dimensions = useResizeObserver(wrapperRef);
 
-    React.useEffect(() => {
-        renderChartFn(d3.select(ref.current));
-        return () => {};
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-      }, []);
-    return ref;
+  useEffect(() => {
+      renderChartFn(dimensions, d3.select(svgRef.current));
+      return () => {};
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [data, data.length, dimensions]);
+
+  return wrapperRef;
 }
