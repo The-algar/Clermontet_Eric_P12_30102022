@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: dataExport/User.js</title>
+    <title>JSDoc: Source: utils/hooks/resizeObserver.jsx</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: dataExport/User.js</h1>
+    <h1 class="page-title">Source: utils/hooks/resizeObserver.jsx</h1>
 
     
 
@@ -26,30 +26,32 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/**Constructor Pattern - User
+            <pre class="prettyprint source linenums"><code>import { useState, useEffect } from "react"
+
+/**
+ * Hook to get the width of the page, for doing responsive
  * 
- * @constructor
- * @param {string} userId
- * @param {object} data  contains all user data
+ * @name resizeObserver
+ * @returns {number} the viewport actual width and height
+ * @function
  */
-export class User {
-    constructor(userId, data) {
-      this._userId = userId;
-      this._data = data;
-      // console.log('User :', userId);
-    }
-    /**
-     * Gets FirstName from initial data
-     *
-     * @name User first name
-     * @return  {string}  FirstName
-     */
-    get _firstName() {
-        const user = this._data.user
-        return user?.userInfos.firstName;
-    }
-  }
-      </code></pre>
+
+export const useResizeObserver = (ref) => {
+  const [dimensions, setDimensions] = useState(null);
+  useEffect(() => {
+    const observeTarget = ref.current;
+    const resizeObserver = new ResizeObserver((entries) => {
+      entries.forEach((entry) => {
+        setDimensions(entry.contentRect);
+      });
+    });
+    resizeObserver.observe(observeTarget);
+    return () => {
+      resizeObserver.unobserve(observeTarget);
+    };
+  }, [ref]);
+  return dimensions;
+};</code></pre>
         </article>
     </section>
 

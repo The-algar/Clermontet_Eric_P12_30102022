@@ -8,11 +8,12 @@ import { useD3 } from '../../utils/hooks/useD3'
 import PropTypes from 'prop-types'
 
 /**
- * @name KpiChart A Radial pie chart showing an user score corresponding to the percentage of his weekly target. Filled by D3.js.
+ * A Radial pie chart showing an user score corresponding to the percentage of his weekly target. Filled by D3.js.
+ * 
+ * @name KpiChart 
  * @param {Object} props props component
  * @param {Array<Number>} props.data user data
- * @hook useD3 hook filtering data, Id and renderChartFn draw the svg of the chart while including responsive dimensions with resize observer
- * @function PieChart Draw the svg pie chart with PieChart
+ * @function
  * @returns {JSX} a Radial Pie Chart
  * @component
 */
@@ -148,7 +149,7 @@ PieChart.propTypes={
   user : PropTypes.arrayOf(
     PropTypes.shape({
       score: PropTypes.number.isRequired,
-      data: PropTypes.array
+      data: PropTypes.array.isRequired
     })
   )
 }

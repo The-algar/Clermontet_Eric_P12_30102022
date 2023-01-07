@@ -1,4 +1,4 @@
-//@ts-check
+// //@ts-check
 
 import React from 'react';
 import PropTypes from 'prop-types'; 
@@ -34,12 +34,14 @@ const InfosText = styled.p`
 export {Wrapper, Infos, InfosData, InfosText}
 
 /** display icon with user infos 
- * @param  {string} icon
- * @param  {string} info
- * @param  {string} text
+ * 
+ * @name KeyData
+ * @param  {string} icon - icons for each category
+ * @param  {string} info - data for each category
+ * @param  {string} text - type for each category
  * @return {JSX}
  */
- export default function KeyData({icon,info,text}) {
+ export default function KeyData({icon, info, text}) {
      
     return (  
     <Wrapper>
