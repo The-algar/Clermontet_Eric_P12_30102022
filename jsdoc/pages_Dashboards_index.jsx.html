@@ -1,4 +1,32 @@
-import React, { useEffect, useState } from 'react'
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: pages/Dashboards/index.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: pages/Dashboards/index.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
 import styled from 'styled-components'
 import Loader from '../../components/Loader'
@@ -243,21 +271,21 @@ function Dashboards() {
   if (isLoading
 ) {
     return (
-      <>
-        <Loader
+      &lt;>
+        &lt;Loader
           type={'spinningBubbles'}
           color={colors.secondary}
           width={200}
           height={200}
         />
-      </>
+      &lt;/>
     )
   }
   if (error) {
     return (
-      <div>
-        <Error />
-      </div>
+      &lt;div>
+        &lt;Error />
+      &lt;/div>
     )
   }
   if (isMockDataLoaded) {
@@ -265,31 +293,31 @@ function Dashboards() {
     // console.log('not err', data) 
 
     return (
-      <>
-        <DashboardWrapper>
-          <SideMenu />
-          <MainContent>
-            <UserHeader userId={userId} message={user_message} isLoading={isLoading} data={data} api={api} />
-              <ChartsGrid>
-                <ActivityChartWrapper>
-                  <BarChart userId={userId} data={data} api={api} />
-                </ActivityChartWrapper>
-                <ThreeChartsWrapper>
-                  <ObjectivesChartTile>
-                    <ObjectivesChart userId={userId} data={data} api={api} />
-                  </ObjectivesChartTile>
-                  <RadarChartTile>
-                    <RadarChart userId={userId} data={data} api={api} />
-                    {/* <ObjectivesChart userId={userId} data={data} api={api} /> */}
-                  </RadarChartTile>
-                  <KpiChartTile> 
-                    <KpiChart userId={userId} data={data} api={api} />
-                    {/* <ObjectivesChart userId={userId} data={data} api={api} /> */}
-                  </KpiChartTile>
-                </ThreeChartsWrapper>
-                <NutritionFactsWrapper>
-                  <KeyData1>
-                    <KeyData
+      &lt;>
+        &lt;DashboardWrapper>
+          &lt;SideMenu />
+          &lt;MainContent>
+            &lt;UserHeader userId={userId} message={user_message} isLoading={isLoading} data={data} api={api} />
+              &lt;ChartsGrid>
+                &lt;ActivityChartWrapper>
+                  &lt;BarChart userId={userId} data={data} api={api} />
+                &lt;/ActivityChartWrapper>
+                &lt;ThreeChartsWrapper>
+                  &lt;ObjectivesChartTile>
+                    &lt;ObjectivesChart userId={userId} data={data} api={api} />
+                  &lt;/ObjectivesChartTile>
+                  &lt;RadarChartTile>
+                    &lt;RadarChart userId={userId} data={data} api={api} />
+                    {/* &lt;ObjectivesChart userId={userId} data={data} api={api} /> */}
+                  &lt;/RadarChartTile>
+                  &lt;KpiChartTile> 
+                    &lt;KpiChart userId={userId} data={data} api={api} />
+                    {/* &lt;ObjectivesChart userId={userId} data={data} api={api} /> */}
+                  &lt;/KpiChartTile>
+                &lt;/ThreeChartsWrapper>
+                &lt;NutritionFactsWrapper>
+                  &lt;KeyData1>
+                    &lt;KeyData
                       isLoading={isLoading}
                       data={data}
                       api={api}
@@ -297,9 +325,9 @@ function Dashboards() {
                       info={`${data?.user.keyData.calorieCount}kCal`}
                       text="Calories"
                     />
-                  </KeyData1>
-                  <KeyData2>
-                    <KeyData
+                  &lt;/KeyData1>
+                  &lt;KeyData2>
+                    &lt;KeyData
                       isLoading={isLoading}
                       data={data}
                       api={api}
@@ -307,9 +335,9 @@ function Dashboards() {
                       info={`${data?.user.keyData.proteinCount}g`}
                       text="Proteines"
                     />
-                  </KeyData2>
-                  <KeyData3>
-                    <KeyData
+                  &lt;/KeyData2>
+                  &lt;KeyData3>
+                    &lt;KeyData
                       isLoading={isLoading}
                       data={data}
                       api={api}
@@ -317,9 +345,9 @@ function Dashboards() {
                       info={`${data?.user.keyData.carbohydrateCount}g`}
                       text="Glucides"
                     />
-                  </KeyData3>
-                  <KeyData4>
-                    <KeyData
+                  &lt;/KeyData3>
+                  &lt;KeyData4>
+                    &lt;KeyData
                       isLoading={isLoading}
                       data={data}
                       api={api}
@@ -327,14 +355,37 @@ function Dashboards() {
                       info={`${data?.user.keyData.lipidCount}g`}
                       text="Lipides"
                     />
-                  </KeyData4>
-                </NutritionFactsWrapper>
-              </ChartsGrid>
-          </MainContent>
-        </DashboardWrapper>
-      </>
+                  &lt;/KeyData4>
+                &lt;/NutritionFactsWrapper>
+              &lt;/ChartsGrid>
+          &lt;/MainContent>
+        &lt;/DashboardWrapper>
+      &lt;/>
     )
   }
 }
 
 export default Dashboards
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="User.html">User</a></li></ul><h3>Global</h3><ul><li><a href="global.html#Api">Api</a></li><li><a href="global.html#BASE_URL">BASE_URL</a></li><li><a href="global.html#BarChart">BarChart</a></li><li><a href="global.html#Dashboards">Dashboards</a></li><li><a href="global.html#KeyData">KeyData</a></li><li><a href="global.html#KpiChart">KpiChart</a></li><li><a href="global.html#LineChart">LineChart</a></li><li><a href="global.html#LoaderWrapper">LoaderWrapper</a></li><li><a href="global.html#SportSeeApi">SportSeeApi</a></li><li><a href="global.html#Userfirstname">User first name</a></li><li><a href="global.html#UserCard">UserCard</a></li><li><a href="global.html#UserHeader">UserHeader</a></li><li><a href="global.html#mockedApi">mockedApi</a></li><li><a href="global.html#resizeObserver">resizeObserver</a></li><li><a href="global.html#use3D">use3D</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.0</a> on Mon Jan 09 2023 11:21:24 GMT+0100 (heure normale d’Europe centrale)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

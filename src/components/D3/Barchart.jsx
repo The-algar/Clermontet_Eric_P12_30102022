@@ -8,14 +8,13 @@ import { useD3 } from '../../utils/hooks/useD3'
 import PropTypes from 'prop-types'
 
 /**
- * A Bar chart showing the user weight and calories burned. 
- * Filled by D3.js.
+ * A Bar chart showing the user weight and calories burned. Filled by D3.js.
+ * 
  * @name BarChart
  * @param {Object} props - props component
  * @param {Array<Object>} props.data - user data
- * @hook useD3 : hook filtering data, Id and renderChartFn draw the svg of the chart while including responsive dimensions with resize observer
- * @function Barchart Draw the Barchart svg with D3.js
- * @returns {JSX} a Bar Chart
+ * @param {number} props.dimensions - height of svg container
+ * @returns {JSX}
  * @component
 */
 
@@ -50,7 +49,7 @@ export default function Barchart({ data }) {
     const xAxis = d3.scaleBand()
       .domain(groups)
       .range([0, width +margin.left +margin.right])
-      .padding([0.5])
+      .padding([0.6])
 
     svg.append("g")
       //send the xAxis to the bottom of the chart
@@ -169,14 +168,14 @@ export default function Barchart({ data }) {
 					})
           // infos bubble 
         toolTip.append("rect")
-          .attr("x", displayTooltip(index+1)) // xAxis(index+1)
+          .attr("x", xAxis(index+1))
           .attr("y", 20)
           .attr("width", 39)
           .attr("height", 70)
           .attr("opacity", "0")
           .attr('fill', 'red')
         toolTip.append("text")
-          .attr("x", displayTooltip(index+1))
+          .attr("x", xAxis(index+1))
           .attr("y", 45)
           .attr("dx", 7.5)
           .text(d.kilogram + "Kg")  
@@ -185,7 +184,7 @@ export default function Barchart({ data }) {
           .style('fill', '#fff')
           .attr("opacity", "0")
         toolTip.append("text")
-          .attr("x", displayTooltip(index+1))
+          .attr("x", xAxis(index+1))
           .attr("y", 75)
           .attr("dx", 2.5)
           .text(d.calories + "Kcal")   
@@ -195,13 +194,13 @@ export default function Barchart({ data }) {
           .attr("opacity", "0")
         })
 
-    // Just to be sure a tooltip don't go outside the chart
-		function displayTooltip(index) {
-			if(xAxis(index) <= width -margin.left -margin.right) 
-				return xAxis(index) 
-			else 
-				return xAxis(index) -100
-		}
+    // // Just to be sure a tooltip don't go outside the chart
+		// function displayTooltip(index) {
+		// 	if(xAxis(index) <= width -margin.left -margin.right) 
+		// 		return xAxis(index)
+		// 	else 
+		// 		return xAxis(index) -100
+		// }
 
      // Adding rounded tips of bars
     data?.activity?.sessions.forEach((d, index) => { 
@@ -266,9 +265,9 @@ export default function Barchart({ data }) {
 Barchart.propTypes={
   activity : PropTypes.arrayOf(
     PropTypes.shape({
-      day: PropTypes.string,
-      kilogram: PropTypes.number,
-      calories:PropTypes.number
+      day: PropTypes.string.isRequired,
+      kilogram: PropTypes.number.isRequired,
+      calories:PropTypes.number.isRequired
     })
   )
 }

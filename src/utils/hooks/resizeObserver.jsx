@@ -1,5 +1,12 @@
 import { useState, useEffect } from "react"
 
+/**
+ * Hook to get the width of the page, for doing responsive
+ * 
+ * @name resizeObserver
+ * @returns {number} the viewport actual width and height
+ * @function
+ */
 
 export const useResizeObserver = (ref) => {
   const [dimensions, setDimensions] = useState(null);

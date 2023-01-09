@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: service/mockedAPI/index.js</title>
+    <title>JSDoc: Source: utils/hooks/useD3.jsx</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: service/mockedAPI/index.js</h1>
+    <h1 class="page-title">Source: utils/hooks/useD3.jsx</h1>
 
     
 
@@ -26,17 +26,31 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import axios from 'axios';
+            <pre class="prettyprint source linenums"><code>import { useEffect, useRef} from "react"
+import * as d3 from 'd3';
+import { useResizeObserver } from "../../utils/hooks/resizeObserver"
 
-const data = '/mockedData.json';
 /**
- * A mocked data for testing component app.
+ * Hook filtering data, Id and renderChartFn draw the svg of the chart while including responsive dimensions with resize observer
  * 
- * @name mockedApi
- * @return  {Promise&lt;Object>}  data promise
- */
-export const getAllDataMocked = () => {
-  return axios.get(data).then((response) => response.data);
+ * @name use3D
+ * @returns {userId|data} the data associated to the selected useriD
+ * @returns {number} the viewport current width and height
+ * @function
+*/
+
+export const useD3 = (svgRef, data, renderChartFn) => {
+  const wrapperRef = useRef();
+  const dimensions = useResizeObserver(wrapperRef);
+
+  useEffect(() => {
+      d3.select(svgRef.current).selectAll('svg').remove()
+      renderChartFn(dimensions, d3.select(svgRef.current));
+      return () => {};
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [data, dimensions]);
+
+  return wrapperRef;
 }</code></pre>
         </article>
     </section>

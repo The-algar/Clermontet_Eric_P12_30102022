@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: service/mockedAPI/index.js</title>
+    <title>JSDoc: Source: utils/hooks/resizeObserver.jsx</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: service/mockedAPI/index.js</h1>
+    <h1 class="page-title">Source: utils/hooks/resizeObserver.jsx</h1>
 
     
 
@@ -26,18 +26,32 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import axios from 'axios';
+            <pre class="prettyprint source linenums"><code>import { useState, useEffect } from "react"
 
-const data = '/mockedData.json';
 /**
- * A mocked data for testing component app.
+ * Hook to get the width of the page, for doing responsive
  * 
- * @name mockedApi
- * @return  {Promise&lt;Object>}  data promise
+ * @name resizeObserver
+ * @returns {number} the viewport actual width and height
+ * @function
  */
-export const getAllDataMocked = () => {
-  return axios.get(data).then((response) => response.data);
-}</code></pre>
+
+export const useResizeObserver = (ref) => {
+  const [dimensions, setDimensions] = useState(null);
+  useEffect(() => {
+    const observeTarget = ref.current;
+    const resizeObserver = new ResizeObserver((entries) => {
+      entries.forEach((entry) => {
+        setDimensions(entry.contentRect);
+      });
+    });
+    resizeObserver.observe(observeTarget);
+    return () => {
+      resizeObserver.unobserve(observeTarget);
+    };
+  }, [ref]);
+  return dimensions;
+};</code></pre>
         </article>
     </section>
 
