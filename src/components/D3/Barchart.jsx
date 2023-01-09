@@ -135,6 +135,13 @@ export default function Barchart({ data }) {
       .domain([0, (maxY)*1.4]) //*1.4
       .range([0, height]) 
 
+    // // Just to be sure a tooltip don't go outside the chart
+		// function displayTooltip(index) {
+		// 	if(xAxis(index) <= width -margin.left -margin.right) 
+		// 		return xAxis(index)
+		// 	else 
+		// 		return xAxis(index) -100
+		// }
     // Tooltips and Tooltip Area
     data?.activity?.sessions.forEach((d, index) => { 
 			let toolTip = svg.append("g")
@@ -155,7 +162,7 @@ export default function Barchart({ data }) {
 						.duration('200')
 						.attr("opacity", ".2")
 					d3.selectAll(`#day${index + 1} > *:not(:first-child)`).transition()
-            .attr('transform', `translate(${xAxis(d.day) +margin.left +10}, 0)`) //+margin.right
+            .attr('transform', `translate(${xAxis(d.day) +margin.left}, 0)`) //+margin.right
 						.duration('200')
 						.attr("opacity", "1")
 					})
@@ -193,14 +200,6 @@ export default function Barchart({ data }) {
           .style('fill', '#fff')   
           .attr("opacity", "0")
         })
-
-    // // Just to be sure a tooltip don't go outside the chart
-		// function displayTooltip(index) {
-		// 	if(xAxis(index) <= width -margin.left -margin.right) 
-		// 		return xAxis(index)
-		// 	else 
-		// 		return xAxis(index) -100
-		// }
 
      // Adding rounded tips of bars
     data?.activity?.sessions.forEach((d, index) => { 

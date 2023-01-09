@@ -22,5 +22,7 @@ export const useD3 = (svgRef, data, renderChartFn) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [data, dimensions]);
 
+    // console.log('Api data loaded = ', data, dimensions)
+
   return wrapperRef;
 }

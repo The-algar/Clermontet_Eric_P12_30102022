@@ -85,7 +85,7 @@ const ThreeChartsWrapper = styled.div`
     }
 `
 const ObjectivesChartTile = styled.div`
-  background-color: gray;
+  //background-color: gray;
   grid-column: 1;
   grid-row: 1;  
   margin-right: 1rem;
@@ -96,7 +96,7 @@ const ObjectivesChartTile = styled.div`
     }
 `
 const RadarChartTile = styled.div`
-  background-color: purple;
+  //background-color: purple;
   grid-column: 2;
   grid-row: 1;  
   margin-right: 1rem;
@@ -108,7 +108,7 @@ const RadarChartTile = styled.div`
     }
 `
 const KpiChartTile = styled.div`
-  background-color: orange;
+  //background-color: orange;
   grid-column: 3 / 3;
   grid-row: 1;  
   margin: 0;
@@ -205,8 +205,7 @@ function Dashboards() {
   const [state, setState] = useState(initialState)
   const { userId, api } = useParams()
 
-  const { isLoading
-, isMockDataLoaded, data, error } = state
+  const { isLoading, isMockDataLoaded, data, error } = state
 
   useEffect(() => {
     async function getMockedData() {
