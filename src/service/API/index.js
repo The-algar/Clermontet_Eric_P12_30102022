@@ -13,7 +13,7 @@ export const END_POINTS = (id) => {
 };
 
 /**
- * Hook used to extract data from the SportSee API to feed the dashboard.
+ * Function used to extract data from the SportSee API to feed the dashboard.
  * 
  * @name Api
  * @param {string} service
